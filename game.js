@@ -72,8 +72,13 @@
         // Read the documentation!
         var move = getShipMovement(ship.currentVelocity, ship.currentAngle);
 
+        if ( ship.shipElem.style.top.length === 0) {
+            ship.shipElem.style.top = '0px';
+        }
+        ship.shipElem.style.top = (parseInt(ship.shipElem.style.top, 10) - move.top) + 'px';
 
-         // Move the ship here!
+        // ship.shipElem.style.top = '50px';
+        // console.log( typeof(ship.shipElem.style.top), ship.shipElem.style.top.length );
 
 
         // Time to check for any collisions (see below)...
