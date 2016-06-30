@@ -35,17 +35,22 @@
      * @return {void}          In other words, no need to return anything
      */
     function handleKeys(event) {
-        console.log(event.keyCode, typeof(event.keyCode));
+        //console.log(event.keyCode, typeof(event.keyCode));
 
-        if (event.keyCode === 38) {
+        if (event.keyCode === 38) { //up
              ship.currentVelocity = ship.currentVelocity + 1;
-             console.log('up');
-         } else if (event.keyCode === 40) {
-             ship.currentVelocity = ship.currentVelocity - 1;
-         } else if (event.keyCode === 37) {
+         } else if (event.keyCode === 40) {//down
+             if (ship.currentVelocity < 0) {
+                 ship.currentVelocity = 0;
+             } else if (ship.currentVelocity > 0) {
+                 ship.currentVelocity = ship.currentVelocity - 1;
+             }
+         } else if (event.keyCode === 37) {//left
              ship.currentAngle = ship.currentAngle - 10;
-         } else if (event.keyCode === 39) {
+             ship.shipElem.style.transform = 'rotate(' + ship.currentAngle + 'deg)';
+         } else if (event.keyCode === 39) {//right
              ship.currentAngle = ship.currentAngle + 10;
+             ship.shipElem.style.transform = 'rotate(' + ship.currentAngle + 'deg)';
          }
          console.log(ship.currentVelocity, ship.currentAngle);
      }
@@ -68,7 +73,7 @@
         var move = getShipMovement(ship.currentVelocity, ship.currentAngle);
 
 
-          // Move the ship here!
+         // Move the ship here!
 
 
         // Time to check for any collisions (see below)...
