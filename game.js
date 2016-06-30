@@ -77,6 +77,11 @@
         }
         ship.shipElem.style.top = (parseInt(ship.shipElem.style.top, 10) - move.top) + 'px';
 
+        if ( ship.shipElem.style.left.length === 0) {
+            ship.shipElem.style.left = '0px';
+        }
+        ship.shipElem.style.left = (parseInt(ship.shipElem.style.left, 10) + move.left) + 'px';
+        //console.log ( ship.shipElem.style.left )
         // ship.shipElem.style.top = '50px';
         // console.log( typeof(ship.shipElem.style.top), ship.shipElem.style.top.length );
 
