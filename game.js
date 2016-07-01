@@ -139,6 +139,7 @@
     document.querySelector('main').addEventListener('crash', function () {
         console.log('A crash occurred!');
 
+        ship.currentVelocity = 0;
         // What might you need/want to do in here?
 
     });
