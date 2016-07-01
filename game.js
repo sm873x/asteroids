@@ -116,13 +116,15 @@
             astBox = allAsteroids[i].getBoundingClientRect();
             if ( (shipBox.top <= astBox.top) && (astBox.top <= (shipBox.top + shipBox.height) ) && ( (shipBox.left <= astBox.left) && (astBox.left <= (shipBox.left + shipBox.width))) ){
                 crash(allAsteroids[i]);
-            } else if ()
-
+            } else if ( ( (shipBox.top <= astBox.top) && (astBox.top <= (shipBox.top + shipBox.height)) ) && ( (shipBox.right <= astBox.right) && ( astBox.right <= (shipBox.right + shipBox.width)) ) ) {
+                crash(allAsteroids[i]);
+            } else if ( ( (shipBox.bottom <= astBox.bottom) && (astBox.bottom <= (shipBox.bottom + shipBox.width)) ) && ( (shipBox.right <= astBox.right) && (astBox.right <= (shipBox.right+ shipBox.width)) ) ) {
+                crash(allAsteroids[i]);
+            } else if ( ( (shipBox.bottom <= astBox.bottom) && (astBox.bottom <= (shipBox.bottom + shipBox.height))) && ( (shipBox.left <= astBox.left) && (astBox.left <= (shipBox.left + shipBox.width))) ) {
+                crash(allAsteroids[i])
+            }
 
         }
-
-
-
 
         // Implement me!
 
