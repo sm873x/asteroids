@@ -1,8 +1,5 @@
 (function gameSetup() {
     'use strict';
-
-    var shipElem = document.getElementById('ship');
-
     // Create your "ship" object and any other variables you might need...
 
     var ship = {
@@ -10,18 +7,25 @@
         currentVelocity: 0,
         currentAngle: 0
     };
+    //          |--------------obj------------------|
+    console.log(ship.shipElem.getBoundingClientRect());
 
 
 
     var allAsteroids = []; //<---an array?
-    shipElem.addEventListener('asteroidDetected', function (event) {
+    ship.shipElem.addEventListener('asteroidDetected', function (event) {
         // You can detect when a new asteroid appears with this event.
         // The new asteroid's HTML element will be in:  event.detail
 
-        // What might you need/want to do in here?
-
+        allAsteroids.push(event.detail);// What might you need/want to do in here?
+        //console.log(event.detail, event.detail.getBoundingClientRect().width);
     });
 
+
+
+    // if (allAsteroids.length >= 1 ) {
+    //     console.log(allAsteroids.event.detail.getBoundingClientRect());
+    // }
     /**
      * Use this function to handle when a key is pressed. Which key? Use the
      * event.keyCode property to know:
@@ -105,6 +109,20 @@
      * @return void
      */
     function checkForCollisions() {
+        allAsteroids[i]
+        var shipBox = ship.shipElem.getBoundingClientRect();
+        var astBox, i, l;
+        for ( i=0, l=allAsteroids.length; i<l; i++) {
+            astBox = allAsteroids[i].getBoundingClientRect();
+            if ( (shipBox.top <= astBox.top) && (astBox.top <= (shipBox.top + shipBox.height) ) && ( (shipBox.left <= astBox.left) && (astBox.left <= (shipBox.left + shipBox.width))) ){
+                crash(allAsteroids[i]);
+            } else if ()
+
+
+        }
+
+
+
 
         // Implement me!
 
