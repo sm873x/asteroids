@@ -85,11 +85,39 @@
             ship.shipElem.style.left = '0px';
         }
         ship.shipElem.style.left = (parseInt(ship.shipElem.style.left, 10) + move.left) + 'px';
-        //console.log ( ship.shipElem.style.left )
-        // ship.shipElem.style.top = '50px';
-        // console.log( typeof(ship.shipElem.style.top), ship.shipElem.style.top.length );
 
+        //WRAP THE SCREEN
+        // if ( ship.shipElem.style.left < (parseInt('0px', 10)) ) {
+        //     ship.shipElem.style.right = 'Opx';
+        // }
+        var w = window;
+        var x = w.innerWidth;
+        var y = w.innerHeight;
 
+        if ( (parseInt(ship.shipElem.style.left, 10)) < 0 ) {
+            // console.log(typeof(w.innerWidth));
+            ship.shipElem.style.left = w.innerWidth + 'px';
+        } else if ( (parseInt(ship.shipElem.style.top, 10) < 0)) {
+            ship.shipElem.style.top = w.innerHeight + 'px';
+        } else if ( (parseInt(ship.shipElem.style.left, 10) > w.innerWidth)) {
+            ship.shipElem.style.left = '0px';
+        } else if ( (parseInt(ship.shipElem.style.top, 10) > w.innerHeight)) {
+            ship.shipElem.style.top = '0px';
+        }
+
+        if ( ((parseInt(ship.shipElem.style.left, 10)) < 0) && (parseInt(ship.shipElem.style.top, 10) < 0) ) {
+            ship.shipElem.style.left = w.innerWidth + 'px';
+            ship.shipElem.style.top = w.innerHeight + 'px';
+        } else if ( ((parseInt(ship.shipElem.style.left, 10)) > w.innerWidth) && (parseInt(ship.shipElem.style.top, 10) > w.innerHeight) ) {
+            ship.shipElem.style.left = '0px';
+            ship.shipElem.style.top = '0px';
+        } else if ( ((parseInt(ship.shipElem.style.left, 10)) > w.innerWidth) && (parseInt(ship.shipElem.style.top, 10) < 0) ) {
+            ship.shipElem.style.left = '0px';
+            ship.shipElem.style.top = w.innerHeight + 'px';
+        } else if ( ((parseInt(ship.shipElem.style.left, 10)) < 0) && (parseInt(ship.shipElem.style.top, 10) > w.innerHeight )) {
+            ship.shipElem.style.left = w.innerWidth + 'px';
+            ship.shipElem.style.top = '0px';
+        }
         // Time to check for any collisions (see below)...
         checkForCollisions();
     }
@@ -109,7 +137,6 @@
      * @return void
      */
     function checkForCollisions() {
-        allAsteroids[i]
         var shipBox = ship.shipElem.getBoundingClientRect();
         var astBox, i, l;
         for ( i=0, l=allAsteroids.length; i<l; i++) {
