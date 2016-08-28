@@ -42,18 +42,18 @@
         //console.log(event.keyCode, typeof(event.keyCode));
 
         if (event.keyCode === 38) { //up
-             ship.currentVelocity = ship.currentVelocity + 1;
+             ship.currentVelocity++;
          } else if (event.keyCode === 40) {//down
              if (ship.currentVelocity < 0) {
                  ship.currentVelocity = 0;
              } else if (ship.currentVelocity > 0) {
-                 ship.currentVelocity = ship.currentVelocity - 1;
+                 ship.currentVelocity--;
              }
          } else if (event.keyCode === 37) {//left
-             ship.currentAngle = ship.currentAngle - 10;
+             ship.currentAngle -= 10;
              ship.shipElem.style.transform = 'rotate(' + ship.currentAngle + 'deg)';
          } else if (event.keyCode === 39) {//right
-             ship.currentAngle = ship.currentAngle + 10;
+             ship.currentAngle += 10;
              ship.shipElem.style.transform = 'rotate(' + ship.currentAngle + 'deg)';
          }
          console.log(ship.currentVelocity, ship.currentAngle);
@@ -87,9 +87,7 @@
         ship.shipElem.style.left = (parseInt(ship.shipElem.style.left, 10) + move.left) + 'px';
 
         //WRAP THE SCREEN
-        // if ( ship.shipElem.style.left < (parseInt('0px', 10)) ) {
-        //     ship.shipElem.style.right = 'Opx';
-        // }
+
         var w = window;
         var x = w.innerWidth;
         var y = w.innerHeight;
@@ -141,6 +139,8 @@
         var astBox, i, l;
         for ( i=0, l=allAsteroids.length; i<l; i++) {
             astBox = allAsteroids[i].getBoundingClientRect();
+
+            // move into fn below?
             if ( (shipBox.top <= astBox.top) && (astBox.top <= (shipBox.top + shipBox.height) ) && ( (shipBox.left <= astBox.left) && (astBox.left <= (shipBox.left + shipBox.width))) ){
                 crash(allAsteroids[i]);
             } else if ( ( (shipBox.top <= astBox.top) && (astBox.top <= (shipBox.top + shipBox.height)) ) && ( (shipBox.right <= astBox.right) && ( astBox.right <= (shipBox.right + shipBox.width)) ) ) {
@@ -155,6 +155,10 @@
 
         // Implement me!
 
+    }
+
+    function isBoxInBox(boxA, boxB) {
+        return true; // or false
     }
 
 
